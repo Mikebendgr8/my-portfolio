@@ -13,7 +13,8 @@ export default function Project() {
             description,
             projectType,
             link,
-            tags
+            tags,
+            _id
         }`)
         .then((data)=> setProjectData(data))
         .catch((console.error));
@@ -26,7 +27,7 @@ export default function Project() {
                 <h2 className="text-lg text-gray-600 flex justify-center mb-12">Welcome to my projects page</h2>
                 <section className="grid grid-cols-2 gap-8">
                     {projectData && projectData.map((project, index) => (
-                        <article className="relative rounded-lg shadow-xl bg-white p-16">
+                        <article key={project._id} className="relative rounded-lg shadow-xl bg-white p-16">
                             <h3 className="text-gray-800 text-3xl font-bold mb-2 hover:text-red-700">
                                 <a href={project.link} alt={project.title} target="_blank" rel="noopener noreferrer">{project.title}</a>
                             </h3>

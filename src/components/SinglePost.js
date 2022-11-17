@@ -2,23 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import sanityClient from "../client.js";
 import imageUrlBuilder from "@sanity/image-url";
-import { PortableText } from '@portabletext/react';
-//import blockContent from "@sanity/block-content-to-react";
+//import { PortableText } from '@portabletext/react';
+import BlockContent from "@sanity/block-content-to-react";
 
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source){
     return builder.image(source)
 }
-const components = {
-    list: {
-      // Ex. 1: customizing common list types
-      bullet: ({children}) => <ul className="mt-xl">{children}</ul>,
-      number: ({children}) => <ol className="mt-lg">{children}</ol>,
-  
-      // Ex. 2: rendering custom lists
-      checkmarks: ({children}) => <ol className="m-auto text-lg">{children}</ol>,
-    },
-  }
+
 
 export default function SinglePost() {
     const [singlePost, setSinglePost] = useState(null);
@@ -62,7 +53,8 @@ export default function SinglePost() {
                     <img src={singlePost.mainImage.asset.url} alt={singlePost.title} className="w-full object-cover rounded-t" style={{height: "400px"}} />
                 </header>
                 <div className="px-16 lg:px-48 py-12 lg:py-20 prose lg:prose-xl max-w-full">
-                    <PortableText value={singlePost.body} components={components} projectId="z5otlqto" dataset="production" />
+                    <BlockContent blocks={singlePost.body} projectId="z5otlqto" dataset="production" />
+                    {/*<PortableText value={singlePost.body} projectId="z5otlqto" dataset="production" />*/}
                 </div>
             </article>
         </main>

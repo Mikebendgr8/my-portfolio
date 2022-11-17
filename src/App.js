@@ -8,6 +8,8 @@ import NavBar from "./components/NavBar";
 import Skills from "./components/Skills";
 import Services from "./components/Services";
 import Contact from "./components/Contact";
+import Error from "./components/Error";
+
 
 
 function App() {
@@ -23,6 +25,7 @@ function App() {
         <Route element={< Project />} path='/project'></Route>
         <Route element={< Services />} path='/services'></Route>
         <Route element={< Contact />} path='/contact'></Route>
+        <Route element={< Error />} path='*'></Route>
       </Routes>
     </Router>
   )
